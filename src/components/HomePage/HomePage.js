@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import "./HomePage.css";
 
 class HomePage extends Component {
@@ -6,14 +7,15 @@ class HomePage extends Component {
   	super(props);
   	this.state = {
   		albumURL: "",
-  		userID: "",
-  		albumID: "",
+  		userID: "1",
+  		albumID: "2",
   	};
   }
   onURLSubmit = (e) => {
     e.preventDefault();
     console.log('enter pressed');
     console.log('this is the album url', this.state.albumURL)
+    this.props.history.push(`/${this.state.userID}/${this.state.albumID}`)
   }
   handleAlbumURLChange = (e) => {
   	this.setState({albumURL: e.target.value})
