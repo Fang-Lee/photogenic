@@ -2,10 +2,22 @@ import React, { Component } from 'react';
 import "./HomePage.css";
 
 class HomePage extends Component {
-  
-  onURLSubmit(e) {
+  constructor(props) {
+  	super(props);
+  	this.state = {
+  		albumURL: "",
+  		userID: "",
+  		albumID: "",
+  	};
+  }
+  onURLSubmit = (e) => {
     e.preventDefault();
     console.log('enter pressed');
+    console.log('this is the album url', this.state.albumURL)
+  }
+  handleAlbumURLChange = (e) => {
+  	this.setState({albumURL: e.target.value})
+  	console.log(this.state.albumURL);
   }
   
 	render() {
@@ -26,8 +38,8 @@ class HomePage extends Component {
 								<input 
 									id="album_url"
 									type="text"
-									className="validate"
-                  ref={(input) => {this.textInput = input;}}
+                  value={this.state.albumURL}
+                  onChange={this.handleAlbumURLChange}
 								/>
                 <button
                   type="submit"
