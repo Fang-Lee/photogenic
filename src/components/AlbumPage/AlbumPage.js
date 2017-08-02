@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Gallery from './Gallery';
 import Axios from 'axios';
 import './AlbumPage.css';
 
@@ -11,7 +12,7 @@ class AlbumPage extends Component {
 				<h1>Album Page</h1>
 				<h1>User ID: {userID}</h1>
 				<h1>Album ID: {albumID}</h1>
-				<Gallery userID={userID} albumID={albumID} />
+                <Gallery userID={userID} albumID={albumID} />
 			</div>
 		);
 	}
