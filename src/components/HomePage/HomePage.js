@@ -16,25 +16,33 @@ class HomePage extends Component {
     e.preventDefault()
     console.log('enter pressed')
     console.log('this is the album url', this.state.albumURL)
-    this.props.history.push(`/${this.state.userID}/${this.state.albumID}`)
+    
 
-    if(this.state.albumURL.indexOf('/photos/') == -1 || this.state.albumURL.indexOf('/album/') == -1){
+    if(this.state.albumURL.indexOf('/photos/') == -1 || this.state.albumURL.indexOf('/albums/') == -1){
       alert('enter valid url')
-      return false;
     }
     else {
-      var userInfo = this.state.albumURL.split('/photos/')[1].split('/album/')
+      var userInfo = this.state.albumURL.split('/photos/')[1].split('/albums/')
       var userID = userInfo[0]
       var albumID = userInfo[1]
       console.log('userID: ', userID)
       console.log('albumID: ', albumID)
-      return true; 
+      this.setState({
+        userID: userID,
+        albumID: albumID
+      }, () => {
+        this.props.history.push(`/${this.state.userID}/${this.state.albumID}`)
+      })
     }
   }
   
-  handleAlbumURLChange = (e) => {
-  	this.setState({albumURL: e.target.value})
-  	console.log(this.state.albumURL);
+  handleChange = (e) => {
+  	this.setState({
+      [e.target.name]: e.target.value
+    }, () => {
+      console.log(this.state.albumURL);
+    })
+  	
   }
   
 	render() {
@@ -54,9 +62,10 @@ class HomePage extends Component {
 							<div className="input-field col s6 offset-s3">
 								<input 
 									id="album_url"
+                  name="albumURL"
 									type="text"
                   value={this.state.albumURL}
-                  onChange={this.handleAlbumURLChange}
+                  onChange={this.handleChange}
 								/>
                 <button
                   type="submit"
