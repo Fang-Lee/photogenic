@@ -16,9 +16,7 @@ class HomePage extends Component {
     e.preventDefault()
     console.log('enter pressed')
     console.log('this is the album url', this.state.albumURL)
-<<<<<<< HEAD
     this.props.history.push(`/${this.state.userID}/${this.state.albumID}`)
-=======
 
     if(this.state.albumURL.indexOf('/photos/') == -1 || this.state.albumURL.indexOf('/album/') == -1){
       alert('enter valid url')
@@ -32,7 +30,6 @@ class HomePage extends Component {
       console.log('albumID: ', albumID)
       return true; 
     }
->>>>>>> validate url submit
   }
   
   handleAlbumURLChange = (e) => {
