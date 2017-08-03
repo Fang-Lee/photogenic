@@ -9,8 +9,10 @@ class PhotoItem extends Component {
     render() {
         console.log(this.props.userID)
 		return(
-            <h1> Photo </h1> 
-		);
+            <div>
+                <img className="photoItem" src={`http://farm${this.props.farm}.staticflickr.com/${this.props.server}/${this.props.id}_${this.props.secret}.jpg`}/> 
+            </div>
+        );
 	}
 }
 

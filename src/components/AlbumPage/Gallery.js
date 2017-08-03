@@ -8,7 +8,8 @@ class Gallery extends Component {
         super(props);
         this.cancelToken = Axios.CancelToken.source();
         this.state = {
-            photos: false,
+            photoset: false,
+            photos: [],
             message: 'Loading...'
         }
         
@@ -20,7 +21,8 @@ class Gallery extends Component {
             cancelToken: this.cancelToken.token
         }).then((result) => {
            this.setState({
-                photos: result.data
+                photoset: result.data,
+               photos: result.data.photoset.photo
            })
         }).catch((err) => {
            if(Axios.isCancel(err)){
@@ -37,13 +39,15 @@ class Gallery extends Component {
         this.cancelToken.cancel("Operation cancelled by the user"); 
     }
     render() {
-        if(this.state.photos){
+        if(this.state.photoset){
+            console.log(this.state.photoset);
             console.log(this.state.photos);
+            var photolist = this.state.photos.map((photo, index) => {
+                return <PhotoItem key={index} farm={photo.farm} id={photo.id} secret={photo.secret} title={photo.title} server={photo.server}/> 
+            })
             return(
-                <div>
-                    <PhotoItem />
-                    <PhotoItem />
-                    <PhotoItem />
+                <div className="gallery">
+                    {photolist}
                 </div>
             );
         } else {

@@ -8,7 +8,7 @@ class AlbumPage extends Component {
 		let userID = this.props.match.params.userID;
 		let albumID = this.props.match.params.albumID;
 		return(
-			<div>
+			<div className="album">
 				<h1>Album Page</h1>
 				<h1>User ID: {userID}</h1>
 				<h1>Album ID: {albumID}</h1>
