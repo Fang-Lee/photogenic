@@ -65,7 +65,15 @@ class Gallery extends Component {
           var layoutGeometry = require('justified-layout')(this.state.photoSizes);
           console.log(layoutGeometry);
           var photolist = this.state.photos.map((photo, index) => {
-              return <PhotoItem key={index} farm={photo.farm} id={photo.id} secret={photo.secret} title={photo.title} server={photo.server}/> 
+              return <PhotoItem 
+                key={index} 
+                farm={photo.farm} 
+                id={photo.id} 
+                secret={photo.secret} 
+                title={photo.title} 
+                server={photo.server}
+                width={layoutGeometry.boxes[index].width}
+                height={layoutGeometry.boxes[index].height} /> 
           })
           return(
             <div className="gallery">
