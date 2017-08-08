@@ -18,6 +18,7 @@ class Gallery extends Component {
       containerWidth: width,
       geometry: require('justified-layout')(this.props.geometry)
     })
+    console.log(this.state.geometry);
   }
   componentDidMount() {
     this.resizeGeometry();
@@ -30,7 +31,9 @@ class Gallery extends Component {
         left: box.left,
         top: box.top,
         width: box.width,
-        height: box.height
+        height: box.height,
+        backgroundImage: `url(http://farm${this.props.photos[index].farm}.staticflickr.com/${this.props.photos[index].server}/${this.props.photos[index].id}_${this.props.photos[index].secret}.jpg)`,
+        backgroundSize: 'cover',
       };
       return(
         <div 
@@ -39,6 +42,7 @@ class Gallery extends Component {
           style={style}></div>
       );
     });
+    console.log(boxes);
     return(
       <div 
         className="wrapper"
