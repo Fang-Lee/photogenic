@@ -1,16 +1,10 @@
-.gallery {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0 auto;
-}
-
 .box {
   position: absolute;
   background : #B16086;
  }
 
  .wrapper {
-  position: relative;
-  margin: 0px auto;
-  background : #FE8AC0;
+	position: relative; 
+	margin: 0 auto; 
+	width: 100%; 
 }

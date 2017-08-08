@@ -1,9 +1,3 @@
 body {
 	color: white;
 }
-
-.album {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}

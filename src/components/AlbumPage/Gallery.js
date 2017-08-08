@@ -17,7 +17,7 @@ class Gallery extends Component {
 		console.log(this.props.geometry)
     this.setState({
       containerWidth: width,
-      geometry: require('justified-layout')(this.props.geometry)
+      geometry: require('justified-layout')(this.props.geometry, {containerWidth: window.innerWidth*0.95, containerPadding:{left: window.innerWidth*0.05, right: 0, top: 10, bottom: 10}})
     })
     console.log('geometry', this.state.geometry);
   }
