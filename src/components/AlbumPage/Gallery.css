@@ -3,3 +3,14 @@
     flex-wrap: wrap;
     margin: 0 auto;
 }
+
+.box {
+  position: absolute;
+  background : #B16086;
+ }
+
+ .wrapper {
+  position: relative;
+  margin: 0px auto;
+  background : #FE8AC0;
+}

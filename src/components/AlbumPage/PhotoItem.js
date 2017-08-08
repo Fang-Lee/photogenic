@@ -8,9 +8,7 @@ class PhotoItem extends Component {
     }
     render() {
 		return(
-            <div>
-                <img className="photoItem" src={`http://farm${this.props.farm}.staticflickr.com/${this.props.server}/${this.props.id}_${this.props.secret}.jpg`}/> 
-            </div>
+        <img className="photoItem" src={`http://farm${this.props.farm}.staticflickr.com/${this.props.server}/${this.props.id}_${this.props.secret}.jpg`}/> 
         );
 	}
 }
