@@ -7,7 +7,6 @@ class PhotoItem extends Component {
         
     }
     render() {
-        console.log(this.props.userID)
 		return(
         <img className="photoItem" src={`http://farm${this.props.farm}.staticflickr.com/${this.props.server}/${this.props.id}_${this.props.secret}.jpg`}/> 
         );
