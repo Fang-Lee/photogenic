@@ -13,6 +13,7 @@ class AlbumPage extends Component {
 			photoset: false,
 			photos: [],
 			photoSizes: false,
+			photoURLs: false,
 			message: 'Loading...'
     }   
   }
@@ -32,8 +33,10 @@ class AlbumPage extends Component {
           var picHeight = originalSize[originalSize.length-1].height;
           var picWidth = originalSize[originalSize.length-1].width;
           var picAspectRatio = picWidth / picHeight;
+					var picURL = originalSize[originalSize.length-1].source; 
 				  this.setState({
-				    photoSizes: [...this.state.photoSizes, picAspectRatio]
+				    photoSizes: [...this.state.photoSizes, picAspectRatio],
+						photoURLs: [...this.state.photoURLs, picURL]
 				  })
 				}).catch((err) => {
 				  if(Axios.isCancel(err)) {
@@ -59,6 +62,7 @@ class AlbumPage extends Component {
 	  this.cancelToken.cancel("Operation cancelled by the user"); 
 	}
 	render() {
+		console.log('this is photos', this.state.photos)
 		if(this.state.photos.length === this.state.photoSizes.length) {
 			return(
 				<div className="album">
@@ -68,7 +72,7 @@ class AlbumPage extends Component {
 	        <Gallery 
 	        	userID={this.state.userID} 
 	        	albumID={this.state.albumID} 
-	        	photos={this.state.photos}
+	        	photos={this.state.photoURLs}
 	        	geometry={this.state.photoSizes} />
 				</div>
 			);
