@@ -1,7 +1,9 @@
 .box {
   position: absolute;
-  transition: all 0.1s;
-  overflow: hidden;
+ }
+
+ .box {
+ 	transition: all 0.1s;
  }
 
  .box:hover {

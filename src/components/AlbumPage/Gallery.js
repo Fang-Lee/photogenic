@@ -2,13 +2,16 @@ import React, { Component } from 'react';
 import Axios from 'axios';
 import PhotoItem from './PhotoItem';
 import './Gallery.css';
+import { MediaBox } from 'react-materialize';
+import Lightbox from 'react-images';
 
 class Gallery extends Component {
   constructor(props) {
     super(props);
     this.state = {
       containerWidth: 0,
-      geometry: {boxes: []}
+      geometry: {boxes: []},
+      lightboxIsOpen: true
     }
   }
   resizeGeometry() {
@@ -25,6 +28,19 @@ class Gallery extends Component {
     this.resizeGeometry();
     window.addEventListener('resize', this.resizeGeometry.bind(this));
   }
+  closeLightbox = () => {
+    this.setState({
+      lightboxIsOpen: false
+    })
+  }
+  renderLightboxImages = () => {
+    let lightboxSrcs = [];
+    this.props.photos.forEach((photo) => {
+      lightboxSrcs.push({src: photo});
+    })
+    console.log(lightboxSrcs);
+    return lightboxSrcs;
+  }
   render() {
     console.log(this.state.geometry);
     let boxes = this.state.geometry.boxes.map((box, index) => {
@@ -39,11 +55,12 @@ class Gallery extends Component {
       return(
         <div 
           key={index} 
-          className="box materialboxed"
+          className="box"
           style={style}></div>
       );
     });
     console.log('boxes', boxes);
+    let lightboxSrcs = this.renderLightboxImages();
     return(
       <div 
         className="wrapper"
@@ -51,6 +68,13 @@ class Gallery extends Component {
                 width: this.state.geometry.containerWidth + 'px'}}
         >
         {boxes}
+        <Lightbox
+          images={lightboxSrcs}
+          isOpen={this.state.lightboxIsOpen}
+          onClickPrev={this.gotoPrevLightboxImage}
+          onClickNext={this.gotoNextLightboxImage}
+          onClose={this.closeLightbox} 
+          showThumbnails={true} />
       </div>
     )
 	}
