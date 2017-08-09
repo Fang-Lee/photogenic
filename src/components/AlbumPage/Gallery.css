@@ -1,6 +1,13 @@
 .box {
   position: absolute;
-  background : #B16086;
+  transition: all 0.1s;
+  overflow: hidden;
+ }
+
+ .box:hover {
+ 	transform: scale(1.02);
+ 	z-index: 100;
+ 	border: 2px solid white;
  }
 
  .wrapper {

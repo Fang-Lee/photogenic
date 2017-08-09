@@ -39,7 +39,7 @@ class Gallery extends Component {
       return(
         <div 
           key={index} 
-          className="box"
+          className="box materialboxed"
           style={style}></div>
       );
     });
