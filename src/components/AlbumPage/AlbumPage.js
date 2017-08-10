@@ -13,7 +13,8 @@ class AlbumPage extends Component {
 			photoset: false,
 			photos: [],
 			photoSizes: false,
-			photoURLs: false,
+			photoGalleryURLs: false,
+			photoLightboxURLs: false,
 			message: 'Loading...'
     }   
   }
@@ -29,14 +30,26 @@ class AlbumPage extends Component {
 				Axios.get(`https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=5773753a6ea2c1f66d3b52ca41d3be26&photo_id=${photo.id}&format=json&nojsoncallback=1`, {
 				  cancelToken: this.cancelToken.token
 				}).then((result) => {
-					var originalSize = result.data.sizes.size;
-          var picHeight = originalSize[originalSize.length-1].height;
-          var picWidth = originalSize[originalSize.length-1].width;
-          var picAspectRatio = picWidth / picHeight;
-					var picURL = originalSize[originalSize.length-1].source; 
+					let photoSizeArray = result.data.sizes.size;
+					let largePictureIndex;
+					let mediumPictureIndex;
+					photoSizeArray.map((size, index) => {
+						if (size.label === "Large") {
+							largePictureIndex = index;
+						}
+						if (size.label === "Medium") {
+							mediumPictureIndex = index;
+						}
+					})
+          let picHeight = photoSizeArray[largePictureIndex].height;
+          let picWidth = photoSizeArray[largePictureIndex].width;
+          let picAspectRatio = picWidth / picHeight;
+					let largePicURL = photoSizeArray[largePictureIndex].source; 
+					let mediumPicURL = photoSizeArray[mediumPictureIndex].source;
 				  this.setState({
 				    photoSizes: [...this.state.photoSizes, picAspectRatio],
-						photoURLs: [...this.state.photoURLs, picURL]
+						photoGalleryURLs: [...this.state.photoGalleryURLs, mediumPicURL],
+						photoLightboxURLs: [...this.state.photoLightboxURLs, largePicURL]
 				  })
 				}).catch((err) => {
 				  if(Axios.isCancel(err)) {
@@ -62,7 +75,6 @@ class AlbumPage extends Component {
 	  this.cancelToken.cancel("Operation cancelled by the user"); 
 	}
 	render() {
-		console.log('this is photos', this.state.photos)
 		if(this.state.photos.length === this.state.photoSizes.length) {
 			return(
 				<div className="album">
@@ -72,7 +84,8 @@ class AlbumPage extends Component {
 	        <Gallery 
 	        	userID={this.state.userID} 
 	        	albumID={this.state.albumID} 
-	        	photos={this.state.photoURLs}
+	        	galleryPhotos={this.state.photoGalleryURLs}
+	        	lightboxPhotos={this.state.photoLightboxURLs}
 	        	geometry={this.state.photoSizes} />
 				</div>
 			);
