@@ -2,48 +2,86 @@ import React, { Component } from 'react';
 import Axios from 'axios';
 import PhotoItem from './PhotoItem';
 import './Gallery.css';
+import { MediaBox } from 'react-materialize';
+import Lightbox from 'react-images';
 
 class Gallery extends Component {
   constructor(props) {
     super(props);
     this.state = {
       containerWidth: 0,
-      geometry: {boxes: []}
+      geometry: {boxes: []},
+      lightboxIsOpen: true,
+      currentLightboxImage: 0,
+      lightboxSrcs: [],
     }
   }
   resizeGeometry() {
     console.log('running resizeGeometry')
     let width = window.innerWidth;
-		console.log(this.props.geometry)
     this.setState({
       containerWidth: width,
       geometry: require('justified-layout')(this.props.geometry, {containerWidth: window.innerWidth*0.95, containerPadding:{left: window.innerWidth*0.05, right: 0, top: 10, bottom: 10}})
     })
-    console.log('geometry', this.state.geometry);
   }
   componentDidMount() {
     this.resizeGeometry();
+    this.renderLightboxImages();
     window.addEventListener('resize', this.resizeGeometry.bind(this));
   }
+  closeLightbox = () => {
+    this.setState({
+      lightboxIsOpen: false
+    })
+  }
+  renderLightboxImages = () => {
+    let lightboxSrcs = [];
+    this.props.lightboxPhotos.forEach((photo) => {
+      lightboxSrcs.push({src: photo});
+    })
+    this.setState({
+      lightboxSrcs: lightboxSrcs
+    })
+  }
+  gotoPrevLightboxImage = () => {
+    this.setState({
+      currentLightboxImage: this.state.currentLightboxImage - 1
+    })
+  }
+  gotoNextLightboxImage = () => {
+    this.setState({
+      currentLightboxImage: this.state.currentLightboxImage + 1
+    })
+  }
+  openLightbox = (index) => {
+    this.setState({
+      lightboxIsOpen: true,
+      currentLightboxImage: index
+    })
+  }
+  clickThumbnail = (index) => {
+    this.setState({
+      currentLightboxImage: index
+    })
+  }
   render() {
-    console.log(this.state.geometry);
     let boxes = this.state.geometry.boxes.map((box, index) => {
       let style = {
         left: box.left,
         top: box.top,
         width: box.width,
         height: box.height,
-        backgroundImage: `url(${this.props.photos[index]})`,
+        backgroundImage: `url(${this.props.galleryPhotos[index]})`,
         backgroundSize: 'cover',
       };
       return(
         <div 
           key={index} 
           className="box"
-          style={style}></div>
+          style={style}
+          onClick={this.openLightbox.bind(this, index)}></div>
       );
     });
-    console.log('boxes', boxes);
     return(
       <div 
         className="wrapper"
@@ -51,6 +89,16 @@ class Gallery extends Component {
                 width: this.state.geometry.containerWidth + 'px'}}
         >
         {boxes}
+        <Lightbox
+          images={this.state.lightboxSrcs}
+          currentImage={this.state.currentLightboxImage}
+          isOpen={this.state.lightboxIsOpen}
+          onClickPrev={this.gotoPrevLightboxImage}
+          onClickNext={this.gotoNextLightboxImage}
+          onClose={this.closeLightbox}
+          backdropClosesModal={true}
+          showThumbnails={true}
+          onClickThumbnail={this.clickThumbnail} />
       </div>
     )
 	}
