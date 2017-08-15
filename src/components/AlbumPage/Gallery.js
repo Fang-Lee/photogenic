@@ -11,7 +11,7 @@ class Gallery extends Component {
     this.state = {
       containerWidth: 0,
       geometry: {boxes: []},
-      lightboxIsOpen: true,
+      lightboxIsOpen: false,
       currentLightboxImage: 0,
       lightboxSrcs: [],
     }

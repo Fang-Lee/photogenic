@@ -48,7 +48,7 @@ class AlbumPage extends Component {
 					let mediumPicURL = photoSizeArray[mediumPictureIndex].source;
 				  this.setState({
 				    photoSizes: [...this.state.photoSizes, picAspectRatio],
-						photoGalleryURLs: [...this.state.photoGalleryURLs, mediumPicURL],
+						photoGalleryURLs: [...this.state.photoGalleryURLs, largePicURL],
 						photoLightboxURLs: [...this.state.photoLightboxURLs, largePicURL]
 				  })
 				}).catch((err) => {
@@ -78,9 +78,6 @@ class AlbumPage extends Component {
 		if(this.state.photos.length === this.state.photoSizes.length) {
 			return(
 				<div className="album">
-					<h1>Album Page</h1>
-					<h1>User ID: {this.state.userID}</h1>
-					<h1>Album ID: {this.state.albumID}</h1>
 	        <Gallery 
 	        	userID={this.state.userID} 
 	        	albumID={this.state.albumID} 
