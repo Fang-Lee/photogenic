@@ -18,7 +18,7 @@ class HomePage extends Component {
     console.log('this is the album url', this.state.albumURL)
     
 
-    if(this.state.albumURL.indexOf('/photos/') == -1 || this.state.albumURL.indexOf('/albums/') == -1){
+    if(this.state.albumURL.indexOf('/photos/') === -1 || this.state.albumURL.indexOf('/albums/') == -1){
       alert('enter valid url')
     }
     else {

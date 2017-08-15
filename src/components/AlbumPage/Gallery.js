@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Axios from 'axios';
 import PhotoItem from './PhotoItem';
 import './Gallery.css';
-import { MediaBox } from 'react-materialize';
+import { MediaBox, SideNav, Button, SideNavItem } from 'react-materialize';
 import Lightbox from 'react-images';
 
 class Gallery extends Component {
@@ -83,22 +83,34 @@ class Gallery extends Component {
       );
     });
     return(
-      <div 
-        className="wrapper"
-        style={{height: this.state.geometry.containerHeight + 'px',
-                width: this.state.geometry.containerWidth + 'px'}}
+      <div>
+        <SideNav
+          trigger={<Button>SIDE NAV</Button>}
+          options={{ closeOnClick: true}}
         >
-        {boxes}
-        <Lightbox
-          images={this.state.lightboxSrcs}
-          currentImage={this.state.currentLightboxImage}
-          isOpen={this.state.lightboxIsOpen}
-          onClickPrev={this.gotoPrevLightboxImage}
-          onClickNext={this.gotoNextLightboxImage}
-          onClose={this.closeLightbox}
-          backdropClosesModal={true}
-          showThumbnails={true}
-          onClickThumbnail={this.clickThumbnail} />
+          <SideNavItem href='#!icon' icon='cloud'>First Link With Icon</SideNavItem>
+        </SideNav>
+        <h1 className="title">{this.props.albumInfo.title._content}</h1>
+        <div 
+          className="wrapper"
+          style={{height: this.state.geometry.containerHeight + 'px',
+                  width: this.state.geometry.containerWidth + 'px'}}
+          >
+          
+          <div className="gallery">
+            {boxes}
+          </div>
+          <Lightbox
+            images={this.state.lightboxSrcs}
+            currentImage={this.state.currentLightboxImage}
+            isOpen={this.state.lightboxIsOpen}
+            onClickPrev={this.gotoPrevLightboxImage}
+            onClickNext={this.gotoNextLightboxImage}
+            onClose={this.closeLightbox}
+            backdropClosesModal={true}
+            showThumbnails={true}
+            onClickThumbnail={this.clickThumbnail} />
+        </div>
       </div>
     )
 	}
