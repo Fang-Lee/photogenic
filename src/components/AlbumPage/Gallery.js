@@ -77,7 +77,7 @@ class Gallery extends Component {
       return(
         <div 
           key={index} 
-          className="box"
+          className="box hideme"
           style={style}
           onClick={this.openLightbox.bind(this, index)}></div>
       );
