@@ -85,18 +85,23 @@ class Gallery extends Component {
     return(
       <div>
         <SideNav
-          trigger={<Button>SIDE NAV</Button>}
+          trigger={<i className="fa fa-bars fa-4x sideNavButton" aria-hidden="true"></i>}
           options={{ closeOnClick: true}}
         >
-          <SideNavItem href='#!icon' icon='cloud'>First Link With Icon</SideNavItem>
+          <div className="side-nav-content">
+            <h3 className="albumTitle">{this.props.albumInfo.title._content}</h3>
+            <p><i>by {this.props.userInfo.realname._content ? this.props.userInfo.realname._content : this.props.userInfo.username._content}</i></p>
+          </div>
         </SideNav>
-        <h1 className="title">{this.props.albumInfo.title._content}</h1>
+        <div className="gallery-header">
+          <h1>{this.props.albumInfo.title._content}</h1>
+          <p><i>by {this.props.userInfo.realname._content ? this.props.userInfo.realname._content : this.props.userInfo.username._content}</i></p>
+        </div>
         <div 
           className="wrapper"
           style={{height: this.state.geometry.containerHeight + 'px',
                   width: this.state.geometry.containerWidth + 'px'}}
-          >
-          
+        >
           <div className="gallery">
             {boxes}
           </div>

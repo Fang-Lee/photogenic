@@ -11,6 +11,7 @@ class AlbumPage extends Component {
 		this.state = {
 			userID: this.props.match.params.userID,
 			albumID: this.props.match.params.albumID,
+			userInfo: false,
 			photoset: false,
 			photosetTitle: "",
 			photos: [],
@@ -91,6 +92,23 @@ class AlbumPage extends Component {
 		    })
 		  }
 		})
+		// Fetch user info
+		Axios.get(`https://api.flickr.com/services/rest/?method=flickr.people.getInfo&api_key=5773753a6ea2c1f66d3b52ca41d3be26&user_id=${this.state.userID}&format=json&nojsoncallback=1`, {
+			cancelToken: this.cancelToken.token
+		}).then((result) => {
+			this.setState({
+				userInfo: result.data.person
+			})
+			console.log(this.state);
+		}).catch((err) => {
+		  if(Axios.isCancel(err)) {
+		    console.log('Request Canceled on getting photo sizes.');
+		  } else {
+		    this.setState({
+		      message: 'Photo Sizes not found'
+		    })
+		  }
+		})
 	}
 	componentWillUnmount(){
 	  this.cancelToken.cancel("Operation cancelled by the user"); 
@@ -102,6 +120,7 @@ class AlbumPage extends Component {
 	        <Gallery 
 	        	userID={this.state.userID} 
 	        	albumID={this.state.albumID}
+	        	userInfo={this.state.userInfo}
 	        	albumInfo={this.state.photosetTitle} 
 	        	galleryPhotos={this.state.photoGalleryURLs}
 	        	lightboxPhotos={this.state.photoLightboxURLs}

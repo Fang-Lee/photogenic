@@ -18,11 +18,26 @@
 	width: 100%; 
 }
 
-.title {
+.gallery-header {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	padding: 20px;
-	text-align: center;
 }
 
 .side-nav {
 	background-color: black;
+	width: 20%;
+}
+
+.sideNavButton {
+	margin-top: 20px;
+	margin-left: 5%;
+}
+
+.side-nav-content {
+	margin-top: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }

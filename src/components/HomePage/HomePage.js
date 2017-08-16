@@ -1,50 +1,45 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import "./HomePage.css";
+import Axios from 'axios';
 
 class HomePage extends Component {
   constructor(props) {
   	super(props);
+    this.cancelToken = Axios.CancelToken.source();
   	this.state = {
   		albumURL: "",
       userID: "",
-      albumID: ""
+      albumID: "",
   	};
   }
-  
   onURLSubmit = (e) => {
     e.preventDefault()
-    console.log('enter pressed')
-    console.log('this is the album url', this.state.albumURL)
-    
-
     if(this.state.albumURL.indexOf('/photos/') === -1 || this.state.albumURL.indexOf('/albums/') == -1){
       alert('enter valid url')
     }
     else {
       var userInfo = this.state.albumURL.split('/photos/')[1].split('/albums/')
-      var userID = userInfo[0]
       var albumID = userInfo[1]
-      console.log('userID: ', userID)
-      console.log('albumID: ', albumID)
-      this.setState({
-        userID: userID,
-        albumID: albumID
-      }, () => {
-        this.props.history.push(`/${this.state.userID}/${this.state.albumID}`)
+      Axios.get(`https://api.flickr.com/services/rest/?method=flickr.urls.lookupUser&api_key=5773753a6ea2c1f66d3b52ca41d3be26&url=${this.state.albumURL}&format=json&nojsoncallback=1`, {
+        cancelToken: this.cancelToken.token
+      }).then((result) => {
+        this.setState({
+          userID: result.data.user.id,
+          albumID: albumID
+        }, () => {
+          this.props.history.push(`/${this.state.userID}/${this.state.albumID}`)
+        })
       })
     }
   }
-  
   handleChange = (e) => {
   	this.setState({
       [e.target.name]: e.target.value
     }, () => {
       console.log(this.state.albumURL);
     })
-  	
   }
-  
 	render() {
 		return(
 			<div className="homepage">
