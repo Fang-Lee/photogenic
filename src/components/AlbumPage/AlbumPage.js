@@ -30,7 +30,7 @@ class AlbumPage extends Component {
 				photoset: result.data,
 				photos: result.data.photoset.photo
 			});
-			this.state.photos.forEach((photo) => {
+			this.state.photos.forEach((photo, index) => {
 				// Fetches each photo size and static url links
 				Axios.get(`https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=5773753a6ea2c1f66d3b52ca41d3be26&photo_id=${photo.id}&format=json&nojsoncallback=1`, {
 				  cancelToken: this.cancelToken.token
@@ -38,7 +38,7 @@ class AlbumPage extends Component {
 					let photoSizeArray = result.data.sizes.size;
 					let largePictureIndex;
 					let mediumPictureIndex;
-					photoSizeArray.map((size, index) => {
+					photoSizeArray.forEach((size, index) => {
 						if (size.label === "Large") {
 							largePictureIndex = index;
 						}
@@ -53,15 +53,21 @@ class AlbumPage extends Component {
 					let mediumPicURL = photoSizeArray[mediumPictureIndex].source;
 				  this.setState({
 				    photoSizes: [...this.state.photoSizes, picAspectRatio],
-						photoGalleryURLs: [...this.state.photoGalleryURLs, largePicURL],
+						photoGalleryURLs: [...this.state.photoGalleryURLs, mediumPicURL],
 						photoLightboxURLs: [...this.state.photoLightboxURLs, largePicURL]
 				  })
+				  console.log(this.state);
 				}).catch((err) => {
 				  if(Axios.isCancel(err)) {
 				    console.log('Request Canceled on getting photo sizes.');
 				  } else {
+				  	console.log(err);
+				  	let removedPhotoArray = this.state.photos;
+				  	removedPhotoArray.splice(index, 1);
+				  	console.log(this.state);
 				    this.setState({
-				      message: 'Photo Sizes not found'
+				      message: 'Photo Size not found',
+				      photos: removedPhotoArray
 				    })
 				  }
 				})
@@ -87,7 +93,7 @@ class AlbumPage extends Component {
 		    console.log('Request Canceled on getting photo sizes.');
 		  } else {
 		    this.setState({
-		      message: 'Photo Sizes not found'
+		      message: 'Photo Info not found'
 		    })
 		  }
 		})
@@ -98,13 +104,12 @@ class AlbumPage extends Component {
 			this.setState({
 				userInfo: result.data.person
 			})
-			console.log(this.state);
 		}).catch((err) => {
 		  if(Axios.isCancel(err)) {
 		    console.log('Request Canceled on getting photo sizes.');
 		  } else {
 		    this.setState({
-		      message: 'Photo Sizes not found'
+		      message: 'User Info not found'
 		    })
 		  }
 		})

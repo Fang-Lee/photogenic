@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import "./HomePage.css";
 import Axios from 'axios';
+import logo from '../../images/pg_logo.jpg';
 
 class HomePage extends Component {
   constructor(props) {
@@ -44,6 +45,7 @@ class HomePage extends Component {
 		return(
 			<div className="homepage">
 				<div className="row">
+          <div className="center"><img className="center" src={logo} /></div>
 					<h1 className="center">PHOTOGENIC</h1>
 				</div>
 				<div className="row">

@@ -4,6 +4,7 @@ import PhotoItem from './PhotoItem';
 import './Gallery.css';
 import { MediaBox, SideNav, Button, SideNavItem } from 'react-materialize';
 import Lightbox from 'react-images';
+import logo from '../../images/pg_logo.jpg';
 
 class Gallery extends Component {
   constructor(props) {
@@ -87,14 +88,15 @@ class Gallery extends Component {
     console.log(dateCreated);
     return(
       <div>
+        <img className="pg-logo" src={'../../images/pg_logo.jpg'} />
         <SideNav
           trigger={<i className="fa fa-bars fa-4x sideNavButton" aria-hidden="true"></i>}
           options={{ closeOnClick: true}}
         >
             <div className="side-nav-header">
+              <img className="side-nav-logo" src={logo} />
               <h3 className="albumTitle">{this.props.albumInfo.title._content}</h3>
-              <p><i>by {this.props.userInfo.realname._content ? this.props.userInfo.realname._content : this.props.userInfo.username._content}</i></p>
-
+              <p><i>by {this.props.userInfo.realname ? this.props.userInfo.realname._content : this.props.userInfo.username._content}</i></p>
             </div>
             <div className="side-nav-footer">
               <p><a target="_blank" className="github-link" href="https://github.com/Fang-Lee/photogenic"><i className="fa fa-github fa-inverse fa-2x"></i></a> <i className="credits">Created by Allen Fang and Kai-Rey Lee</i></p>
@@ -103,6 +105,7 @@ class Gallery extends Component {
         <div className="gallery-header">
           {/*<h1>{this.props.albumInfo.title._content}</h1>
           <p><i>by {this.props.userInfo.realname._content ? this.props.userInfo.realname._content : this.props.userInfo.username._content}</i></p>*/}
+          <img className="pg-logo" src={logo} />
         </div>
         <div 
           className="wrapper"

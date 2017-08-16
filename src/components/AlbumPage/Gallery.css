@@ -43,6 +43,7 @@
 }
 
 .side-nav-header {
+	margin-top: 20px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -73,4 +74,17 @@ a:hover {
 .github-link {
 	margin: 0;
 	padding: 0;
+}
+
+
+.pg-logo {
+	position: absolute;
+	z-index: 200;
+	margin-top: 30vh;
+	opacity: 1;
+}
+
+.side-nav-logo {
+	width: 100px;
+	height: 100px;
 }
