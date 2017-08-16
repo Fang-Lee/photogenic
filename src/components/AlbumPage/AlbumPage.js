@@ -13,7 +13,7 @@ class AlbumPage extends Component {
 			albumID: this.props.match.params.albumID,
 			userInfo: false,
 			photoset: false,
-			photosetTitle: "",
+			photosetInfo: "",
 			photos: [],
 			photoSizes: false,
 			photoGalleryURLs: false,
@@ -80,9 +80,8 @@ class AlbumPage extends Component {
 			cancelToken: this.cancelToken.token
 		}).then((result) => {
 			this.setState({
-				photosetTitle: result.data.photoset
+				photosetInfo: result.data.photoset
 			})
-			console.log(this.state.photosetTitle)
 		}).catch((err) => {
 		  if(Axios.isCancel(err)) {
 		    console.log('Request Canceled on getting photo sizes.');
@@ -121,7 +120,7 @@ class AlbumPage extends Component {
 	        	userID={this.state.userID} 
 	        	albumID={this.state.albumID}
 	        	userInfo={this.state.userInfo}
-	        	albumInfo={this.state.photosetTitle} 
+	        	albumInfo={this.state.photosetInfo} 
 	        	galleryPhotos={this.state.photoGalleryURLs}
 	        	lightboxPhotos={this.state.photoLightboxURLs}
 	        	geometry={this.state.photoSizes} />

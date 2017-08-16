@@ -82,6 +82,9 @@ class Gallery extends Component {
           onClick={this.openLightbox.bind(this, index)}></div>
       );
     });
+    let date = new Date(parseInt(this.props.albumInfo.date_create) * 1000);
+    let dateCreated = date.toDateString();
+    console.log(dateCreated);
     return(
       <div>
         <SideNav
@@ -91,14 +94,15 @@ class Gallery extends Component {
             <div className="side-nav-header">
               <h3 className="albumTitle">{this.props.albumInfo.title._content}</h3>
               <p><i>by {this.props.userInfo.realname._content ? this.props.userInfo.realname._content : this.props.userInfo.username._content}</i></p>
+
             </div>
             <div className="side-nav-footer">
               <p><a target="_blank" className="github-link" href="https://github.com/Fang-Lee/photogenic"><i className="fa fa-github fa-inverse fa-2x"></i></a> <i className="credits">Created by Allen Fang and Kai-Rey Lee</i></p>
             </div>
         </SideNav>
         <div className="gallery-header">
-          <h1>{this.props.albumInfo.title._content}</h1>
-          <p><i>by {this.props.userInfo.realname._content ? this.props.userInfo.realname._content : this.props.userInfo.username._content}</i></p>
+          {/*<h1>{this.props.albumInfo.title._content}</h1>
+          <p><i>by {this.props.userInfo.realname._content ? this.props.userInfo.realname._content : this.props.userInfo.username._content}</i></p>*/}
         </div>
         <div 
           className="wrapper"
