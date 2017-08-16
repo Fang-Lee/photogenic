@@ -88,10 +88,13 @@ class Gallery extends Component {
           trigger={<i className="fa fa-bars fa-4x sideNavButton" aria-hidden="true"></i>}
           options={{ closeOnClick: true}}
         >
-          <div className="side-nav-content">
-            <h3 className="albumTitle">{this.props.albumInfo.title._content}</h3>
-            <p><i>by {this.props.userInfo.realname._content ? this.props.userInfo.realname._content : this.props.userInfo.username._content}</i></p>
-          </div>
+            <div className="side-nav-header">
+              <h3 className="albumTitle">{this.props.albumInfo.title._content}</h3>
+              <p><i>by {this.props.userInfo.realname._content ? this.props.userInfo.realname._content : this.props.userInfo.username._content}</i></p>
+            </div>
+            <div className="side-nav-footer">
+              <p><a target="_blank" className="github-link" href="https://github.com/Fang-Lee/photogenic"><i className="fa fa-github fa-inverse fa-2x"></i></a> <i className="credits">Created by Allen Fang and Kai-Rey Lee</i></p>
+            </div>
         </SideNav>
         <div className="gallery-header">
           <h1>{this.props.albumInfo.title._content}</h1>

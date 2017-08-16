@@ -28,6 +28,13 @@
 .side-nav {
 	background-color: black;
 	width: 20%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.albumTitle{
+	font-size: 200%;
 }
 
 .sideNavButton {
@@ -35,14 +42,35 @@
 	margin-left: 5%;
 }
 
-.side-nav-content {
-	margin-top: 20px;
+.side-nav-header {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 }
 
+.side-nav-footer {
+	text-align: center;
+}
+
 .hideme
 {
     opacity:0;
+}
+
+.credits {
+	font-size: 0.8rem;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+a:hover {
+	cursor: pointer;
+}
+
+.github-link {
+	margin: 0;
+	padding: 0;
 }
