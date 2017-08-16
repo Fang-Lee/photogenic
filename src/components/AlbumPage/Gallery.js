@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Axios from 'axios';
 import PhotoItem from './PhotoItem';
 import './Gallery.css';
-import { MediaBox } from 'react-materialize';
+import { MediaBox, SideNav, Button, SideNavItem } from 'react-materialize';
 import Lightbox from 'react-images';
 
 class Gallery extends Component {
@@ -83,22 +83,39 @@ class Gallery extends Component {
       );
     });
     return(
-      <div 
-        className="wrapper"
-        style={{height: this.state.geometry.containerHeight + 'px',
-                width: this.state.geometry.containerWidth + 'px'}}
+      <div>
+        <SideNav
+          trigger={<i className="fa fa-bars fa-4x sideNavButton" aria-hidden="true"></i>}
+          options={{ closeOnClick: true}}
         >
-        {boxes}
-        <Lightbox
-          images={this.state.lightboxSrcs}
-          currentImage={this.state.currentLightboxImage}
-          isOpen={this.state.lightboxIsOpen}
-          onClickPrev={this.gotoPrevLightboxImage}
-          onClickNext={this.gotoNextLightboxImage}
-          onClose={this.closeLightbox}
-          backdropClosesModal={true}
-          showThumbnails={true}
-          onClickThumbnail={this.clickThumbnail} />
+          <div className="side-nav-content">
+            <h3 className="albumTitle">{this.props.albumInfo.title._content}</h3>
+            <p><i>by {this.props.userInfo.realname._content ? this.props.userInfo.realname._content : this.props.userInfo.username._content}</i></p>
+          </div>
+        </SideNav>
+        <div className="gallery-header">
+          <h1>{this.props.albumInfo.title._content}</h1>
+          <p><i>by {this.props.userInfo.realname._content ? this.props.userInfo.realname._content : this.props.userInfo.username._content}</i></p>
+        </div>
+        <div 
+          className="wrapper"
+          style={{height: this.state.geometry.containerHeight + 'px',
+                  width: this.state.geometry.containerWidth + 'px'}}
+        >
+          <div className="gallery">
+            {boxes}
+          </div>
+          <Lightbox
+            images={this.state.lightboxSrcs}
+            currentImage={this.state.currentLightboxImage}
+            isOpen={this.state.lightboxIsOpen}
+            onClickPrev={this.gotoPrevLightboxImage}
+            onClickNext={this.gotoNextLightboxImage}
+            onClose={this.closeLightbox}
+            backdropClosesModal={true}
+            showThumbnails={true}
+            onClickThumbnail={this.clickThumbnail} />
+        </div>
       </div>
     )
 	}
