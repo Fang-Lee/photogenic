@@ -2,6 +2,7 @@
   "name": "photogenic",
   "version": "0.1.0",
   "private": true,
+  "homepage": "photogenic.allenfang.com", 
   "dependencies": {
     "axios": "^0.16.2",
     "justified-layout": "^2.1.0",
