@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Gallery from './Gallery';
 import Axios from 'axios';
 import './AlbumPage.css';
-import { Row, Col, Preloader } from 'react-materialize'; 
+import { Preloader } from 'react-materialize'; 
 
 class AlbumPage extends Component {
 	constructor(props){

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import "./HomePage.css";
 import Axios from 'axios';
 import logo from '../../images/pg_logo.jpg';
@@ -16,7 +16,7 @@ class HomePage extends Component {
   }
   onURLSubmit = (e) => {
     e.preventDefault()
-    if(this.state.albumURL.indexOf('/photos/') === -1 || this.state.albumURL.indexOf('/albums/') == -1){
+    if(this.state.albumURL.indexOf('/photos/') === -1 || this.state.albumURL.indexOf('/albums/') === -1){
       alert('enter valid url')
     }
     else {
@@ -45,7 +45,7 @@ class HomePage extends Component {
 		return(
 			<div className="homepage">
 				<div className="row">
-          <div className="center"><img className="center" src={logo} /></div>
+          <div className="center"><img className="center" src={logo} alt={'logo'}/></div>
 					<h1 className="center">PHOTOGENIC</h1>
 				</div>
 				<div className="row">
