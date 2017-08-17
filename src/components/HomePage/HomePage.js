@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import "./HomePage.css";
 import Axios from 'axios';
 import logo from '../../images/pg_logo.jpg';
@@ -74,6 +74,9 @@ class HomePage extends Component {
 						</div>
 					</form>
 				</div>
+        <div className="row">
+          <div className="center"><Link to="/144384142@N02/72157685076080983">DEMO</Link></div>
+        </div>
 			</div>
 		)
 	}

@@ -56,7 +56,6 @@ class AlbumPage extends Component {
 						photoGalleryURLs: [...this.state.photoGalleryURLs, mediumPicURL],
 						photoLightboxURLs: [...this.state.photoLightboxURLs, largePicURL]
 				  })
-				  console.log(this.state);
 				}).catch((err) => {
 				  if(Axios.isCancel(err)) {
 				    console.log('Request Canceled on getting photo sizes.');

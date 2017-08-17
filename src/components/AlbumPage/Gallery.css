@@ -1,3 +1,23 @@
+@import url("https://fonts.googleapis.com/css?family=Merriweather:300,700,300italic,700italic|Source+Sans+Pro:900");
+
+h1, h3, a {
+	font-family: SourceSansPro, sans-serif;
+}
+
+p {
+	font-family: Merriweather;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+a:hover {
+	cursor: pointer;
+	color: turquoise;
+}
+
 .box {
   position: absolute;
  }
@@ -22,7 +42,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	padding: 20px;
+	margin-bottom: 20px;
 }
 
 .side-nav {
@@ -35,11 +55,18 @@
 
 .albumTitle{
 	font-size: 200%;
+	font-weight: 900;
 }
 
 .sideNavButton {
-	margin-top: 20px;
+	margin-top: 25px;
 	margin-left: 5%;
+	transition: all 0.3s;
+}
+
+.sideNavButton:hover{
+	cursor: pointer;
+	color: turquoise;
 }
 
 .side-nav-header {
@@ -53,29 +80,13 @@
 	text-align: center;
 }
 
-.hideme
-{
+.hideme {
     opacity:0;
 }
 
 .credits {
 	font-size: 0.8rem;
 }
-
-a {
-	color: inherit;
-	text-decoration: none;
-}
-
-a:hover {
-	cursor: pointer;
-}
-
-.github-link {
-	margin: 0;
-	padding: 0;
-}
-
 
 .pg-logo {
 	position: absolute;
@@ -88,3 +99,27 @@ a:hover {
 	width: 100px;
 	height: 100px;
 }
+
+.homepage-link {
+	margin-bottom: 30px;
+}
+
+.back-to-top {
+	padding: 50px;
+	display: flex;
+	justify-content: center;
+}
+
+.back-to-top-btn {
+	border: 2px white solid;
+	padding: 15px 30px;
+	transition: all 0.3s;
+}
+
+.back-to-top-btn:hover {
+	transform: scale(1.02);
+	color: turquoise;
+	border: 2px turquoise solid;
+}
+
+

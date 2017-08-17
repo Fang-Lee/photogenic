@@ -1,3 +1,13 @@
+@import url("https://fonts.googleapis.com/css?family=Merriweather:300,700,300italic,700italic|Source+Sans+Pro:900");
+
+h1, a {
+	font-family: SourceSansPro, sans-serif;
+}
+
+p {
+	font-family: Merriweather;
+}
+
 .homepage {
 	color: white;
 	margin-top: 10vh;
