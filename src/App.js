@@ -17,8 +17,8 @@ class App extends Component {
 			<BrowserRouter>
 				<div>
 					<Switch>
-						<Route path="/:userID/:albumID" component={AlbumPage} onUpdate={logPageView} />
-						<Route path="/" component={HomePage} onUpdate={logPageView}/>
+						<Route path="/:userID/:albumID" component={AlbumPage} onEnter={logPageView} />
+						<Route path="/" component={HomePage} onEnter={logPageView}/>
 					</Switch>
 				</div>
 			</BrowserRouter>
