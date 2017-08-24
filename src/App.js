@@ -6,6 +6,7 @@ import ReactGA from 'react-ga';
 
 ReactGA.initialize('UA-105227083-1');
 function logPageView() {
+	console.log('google analytics');
   ReactGA.set({ page: window.location.pathname + window.location.search });
   ReactGA.pageview(window.location.pathname + window.location.search);
 }
